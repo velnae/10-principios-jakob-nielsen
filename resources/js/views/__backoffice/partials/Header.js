@@ -526,7 +526,7 @@ function Header(props) {
 
                         <Grid item xs />
 
-                        <Grid item>
+                        {/* <Grid item>
                             <Tooltip title={Lang.get('navigation.github')}>
                                 <IconButton
                                     href="https://github.com/palonponjovertlota/lra"
@@ -537,9 +537,9 @@ function Header(props) {
                                     <GitHubIcon />
                                 </IconButton>
                             </Tooltip>
-                        </Grid>
+                        </Grid> */}
 
-                        {monitoringEnabled && (
+                        {/* {monitoringEnabled && (
                             <Grid item>
                                 <Tooltip
                                     title={Lang.get('navigation.monitoring')}
@@ -554,26 +554,27 @@ function Header(props) {
                                     </IconButton>
                                 </Tooltip>
                             </Grid>
-                        )}
+                        )} */}
 
                         <Grid item>
                             <Tooltip
                                 title={Lang.get('navigation.notifications')}
                             >
                                 <IconButton color="inherit">
-                                    <Badge
+                                    {/* <Badge
                                         badgeContent={
                                             new Date().getMinutes() + user.id
                                         }
                                         color="secondary"
                                     >
                                         <NotificationsIcon />
-                                    </Badge>
+                                    </Badge> */}
+                                        <NotificationsIcon />
                                 </IconButton>
                             </Tooltip>
                         </Grid>
 
-                        <Grid item>
+                        {/* <Grid item>
                             <Tooltip title={Lang.get('navigation.locale')}>
                                 <div className={classes.navLinkMenuWrapper}>
                                     <IconButton
@@ -590,7 +591,7 @@ function Header(props) {
                                     <LocaleMenu {...props} />
                                 </div>
                             </Tooltip>
-                        </Grid>
+                        </Grid> */}
 
                         <Grid item>
                             <Tooltip
@@ -658,8 +659,8 @@ function Header(props) {
                                     <Grid item>
                                         <Button
                                             className={classes.button}
-                                            variant="outlined"
-                                            color="inherit"
+                                            variant="contained"
+                                            color="secondary"
                                             size="small"
                                             onClick={primaryAction.clicked}
                                         >

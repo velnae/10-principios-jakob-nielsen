@@ -13,7 +13,7 @@ import {
     MenuItem,
     Select,
     Typography,
-    withStyles,
+    withStyles, TextField,
 } from '@material-ui/core';
 
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
@@ -93,6 +93,7 @@ const Profile = props => {
                                 <Input
                                     id="firstname"
                                     name="firstname"
+                                    variant="outlined"
                                     value={values.firstname}
                                     onChange={handleChange}
                                     fullWidth
