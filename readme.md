@@ -1,8 +1,10 @@
 # Los 10 principios de usabilidad de Jakob Nielsen
 
 Este es un proyecto simple que viene con autenticacion y CRUD de uesrs, es una single page application SPA cosntruido con 
-- [React.js](https://reactjs.org) in the frontend 
-- [Laravel](https://laravel.com) in the backend.
+- [NodeJs 16](https://nodejs.org/en/blog/release/v16.16.0/) in the frontend 
+- [React.js 16](https://reactjs.org) in the frontend 
+- [PHP 7.3](https://www.php.net/manual/es/migration73.php) in the backend.
+- [Laravel 6](https://laravel.com) in the backend.
 
 Se le aplica los 10 principios de usabilidad de Jakob Nielsen  
 credito a https://github.com/jovertical/laravel-react-admin
