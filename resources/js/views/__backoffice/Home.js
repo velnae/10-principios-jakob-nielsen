@@ -11,9 +11,23 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 //import Typography from '@material-ui/core/Typography';
 
+const Usuario = () => {
+    // 👇️ navigate to /contacts
+    navigate('/#/resources/users');
+  };
+
+
 const styles = {
     card: {
-      minWidth: 275,
+      //minWidth: 275,
+      width: '100%',
+      height: '500px',
+      backgroundPosition: "65% 50%",
+      backgroundRepeat: "no-repeat",
+	  //backgroundPosition: "center center",
+	  backgroundSize: "cover",
+	  //backgroundAttachment: "fixed",
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://www.unamba.edu.pe/media/k2/items/cache/2ec788b5d2483f73e1f9efd1de8baaf4_XL.jpg')`,
     },
     bullet: {
       display: 'inline-block',
@@ -21,7 +35,9 @@ const styles = {
       transform: 'scale(0.8)',
     },
     title: {
-      fontSize: 14,
+      //fontSize: 14,
+      //margin: '40px',
+      marginTop: 280,
     },
     pos: {
       marginBottom: 12,
@@ -58,22 +74,22 @@ function Home(props) {
             primaryAction={primaryAction}
             tabs={tabs}
         >
-            <Typography>There is no place like home</Typography>
+            
 
-            <Card >
+            <Card className={classes.card}>
                 <CardContent>
-                    <Typography variant="h5"  component="h2"  color="textSecondary" gutterBottom>
-                    Word of the Day
+                    <Typography className={classes.title} variant="h5"  component="h2"  color="textSecondary" gutterBottom>
+                    bienvenidos al panel de administración de UNAMBA
                     </Typography>
                     <Typography component="p">
-                    well meaning and kindly.
+                    Pagos electrónicos - UNAMBA.
                     <br />
-                    {'"a benevolent smile"'}
+                    {'"Desde tu PC o Smartphone - Usa UNAMBA-Pagos donde quieras, cuando quieras."'}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button variant="contained" color="primary" onClick="#">
-                        Iniciar un Pago!
+                    <Button variant="contained" color="primary" onClick={Usuario}>
+                        Gestión de Usario
                     </Button>
                 </CardActions>
             </Card>
