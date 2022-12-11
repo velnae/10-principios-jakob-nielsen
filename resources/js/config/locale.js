@@ -1,5 +1,13 @@
 export default {
     // English
+    'es.actions': require('../../lang/es/actions.php'),
+    'es.navigation': require('../../lang/es/navigation.php'),
+    'es.resources': require('../../lang/es/resources.php'),
+    'es.settings': require('../../lang/es/settings.php'),
+    'es.table': require('../../lang/es/table.php'),
+    'es.validation': require('../../lang/es/validation.php'),
+
+    // English
     'en.actions': require('../../lang/en/actions.php'),
     'en.navigation': require('../../lang/en/navigation.php'),
     'en.resources': require('../../lang/en/resources.php'),
