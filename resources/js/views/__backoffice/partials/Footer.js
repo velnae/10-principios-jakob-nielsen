@@ -7,11 +7,11 @@ const Footer = props => (
         <Typography>
             {Lang.get('navigation.citation')}{' '}
             <Link
-                href="https://github.com/palonponjovertlota"
+                href="https://github.com/velnae/10-principios-jakob-nielsen"
                 target="_blank"
                 rel="noreferrer"
             >
-                @palonponjovertlota
+                Grupo Rayones - Github
             </Link>
         </Typography>
     </footer>

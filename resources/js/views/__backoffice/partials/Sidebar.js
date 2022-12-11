@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import {
     Divider,
     Drawer,
-    IconButton,
     Hidden,
+    IconButton,
     List,
     ListItem,
     ListItemIcon,
@@ -22,20 +22,21 @@ import {
     Dashboard as DashboardIcon,
     ExpandLess as ExpandLessIcon,
     People as PeopleIcon,
+    Person as PersonIcon,
     Security as SecurityIcon,
     ShowChart as ShowChartIcon,
 } from '@material-ui/icons';
 
-import { APP } from '../../../config';
+import {APP} from '../../../config';
 import * as NavigationUtils from '../../../helpers/Navigation';
 import * as StringUtils from '../../../helpers/String';
 
 import brandLogoLight from '../../../../img/logos/short-light.svg';
 import brandLogoDark from '../../../../img/logos/short-dark.svg';
-import { AppContext } from '../../../AppContext';
+import {AppContext} from '../../../AppContext';
 
 function Sidebar(props) {
-    const { nightMode } = useContext(AppContext);
+    const {nightMode} = useContext(AppContext);
     const {
         classes,
         location,
@@ -51,7 +52,7 @@ function Sidebar(props) {
         ...other
     } = props;
 
-    const { variant, onClose } = props;
+    const {variant, onClose} = props;
 
     const [activeLinkGroup, setActiveLinkGroup] = useState(-1);
     const [initialized, setInitialized] = useState(false);
@@ -60,7 +61,7 @@ function Sidebar(props) {
         name: Lang.get('navigation.dashboard'),
         icon: (
             <Tooltip title={minimized ? Lang.get('navigation.dashboard') : ''}>
-                <DashboardIcon />
+                <DashboardIcon/>
             </Tooltip>
         ),
         path: NavigationUtils.route('backoffice.home'),
@@ -73,13 +74,14 @@ function Sidebar(props) {
             links: [
                 {
                     name: Lang.get('navigation.users'),
+                    disabled: false,
                     icon: (
                         <Tooltip
                             title={
                                 minimized ? Lang.get('navigation.users') : ''
                             }
                         >
-                            <PeopleIcon />
+                            <PersonIcon/>
                         </Tooltip>
                     ),
                     path: NavigationUtils.route(
@@ -89,13 +91,29 @@ function Sidebar(props) {
 
                 {
                     name: Lang.get('navigation.roles'),
+                    disabled: true,
                     icon: (
                         <Tooltip
                             title={
                                 minimized ? Lang.get('navigation.roles') : ''
                             }
                         >
-                            <SecurityIcon />
+                            <SecurityIcon/>
+                        </Tooltip>
+                    ),
+                    path: null,
+                },
+
+                {
+                    name: 'Grupos',
+                    disabled: true,
+                    icon: (
+                        <Tooltip
+                            title={
+                                minimized ? 'Grupos' : ''
+                            }
+                        >
+                            <PeopleIcon/>
                         </Tooltip>
                     ),
                     path: null,
@@ -109,7 +127,7 @@ function Sidebar(props) {
             links: [
                 {
                     name: 'Traffic',
-                    icon: <ShowChartIcon />,
+                    icon: <ShowChartIcon/>,
                     path: null,
                 },
             ],
@@ -153,12 +171,12 @@ function Sidebar(props) {
                         {APP.name}
                     </Typography>
 
-                    <div className={classes.grow} />
+                    <div className={classes.grow}/>
 
                     {variant === 'persistent' && (
                         <Tooltip title={Lang.get('navigation.close_drawer')}>
                             <IconButton onClick={onClose}>
-                                <ChevronLeftIcon />
+                                <ChevronLeftIcon/>
                             </IconButton>
                         </Tooltip>
                     )}
@@ -174,7 +192,7 @@ function Sidebar(props) {
                 .filter((linkGroup, i) =>
                     !minimized ? linkGroup : i === activeLinkGroup,
                 )
-                .map(({ name, links }, key) => (
+                .map(({name, links}, key) => (
                     <React.Fragment key={key}>
                         <div
                             className={classNames(classes.linkGroup, {
@@ -193,7 +211,7 @@ function Sidebar(props) {
                                         classes.linkGroupHeader,
                                         {
                                             [classes.opened]:
-                                                key === activeLinkGroup,
+                                            key === activeLinkGroup,
                                         },
                                     )}
                                 >
@@ -207,17 +225,17 @@ function Sidebar(props) {
 
                                     {key === activeLinkGroup && (
                                         <ListItemIcon className={classes.text}>
-                                            <ExpandLessIcon />
+                                            <ExpandLessIcon/>
                                         </ListItemIcon>
                                     )}
                                 </ListItem>
                             ) : (
-                                <div className={classes.linkGroupHeader} />
+                                <div className={classes.linkGroupHeader}/>
                             )}
 
                             {key === activeLinkGroup || minimized ? (
                                 <>
-                                    {links.map(({ name, icon, path }) => (
+                                    {links.map(({name, icon, path, disabled}) => (
                                         <ListItem
                                             button
                                             dense
@@ -227,9 +245,10 @@ function Sidebar(props) {
                                                 classes.grouped,
                                                 {
                                                     [classes.active]:
-                                                        location.pathname ===
-                                                        path,
+                                                    location.pathname ===
+                                                    path,
                                                     [classes.center]: minimized,
+                                                    [classes.disabled]: disabled
                                                 },
                                             )}
                                             onClick={() => navigate(path)}
@@ -240,9 +259,9 @@ function Sidebar(props) {
                                                 <ListItemText
                                                     classes={{
                                                         primary:
-                                                            classes.linkText,
+                                                        classes.linkText,
                                                         textDense:
-                                                            classes.textDense,
+                                                        classes.textDense,
                                                     }}
                                                 >
                                                     {name}
@@ -264,10 +283,10 @@ function Sidebar(props) {
                                 </ListItem>
                             )}
 
-                            <div className={classes.linkGroupSpacer} />
+                            <div className={classes.linkGroupSpacer}/>
                         </div>
 
-                        <Divider className={classes.divider} />
+                        <Divider className={classes.divider}/>
                     </React.Fragment>
                 ))}
         </List>
@@ -302,7 +321,7 @@ function Sidebar(props) {
                 )}
             </ListItem>
 
-            <Divider className={classes.divider} />
+            <Divider className={classes.divider}/>
 
             {renderLinkGroups}
         </List>
@@ -310,7 +329,7 @@ function Sidebar(props) {
 
     const renderFooter = (
         <ListItem className={classes.footer}>
-            {!minimized && <div className={classes.grow} />}
+            {!minimized && <div className={classes.grow}/>}
 
             <ListItemIcon
                 color="inherit"
@@ -325,9 +344,9 @@ function Sidebar(props) {
                 >
                     <IconButton>
                         {!minimized ? (
-                            <ChevronLeftIcon />
+                            <ChevronLeftIcon/>
                         ) : (
-                            <ChevronRightIcon />
+                            <ChevronRightIcon/>
                         )}
                     </IconButton>
                 </Tooltip>
@@ -344,7 +363,7 @@ function Sidebar(props) {
             >
                 {renderHeader}
 
-                <Divider className={classes.divider} />
+                <Divider className={classes.divider}/>
 
                 <div className={classes.linksWrapper}>{renderLinks}</div>
 
@@ -352,7 +371,7 @@ function Sidebar(props) {
                     {variant !== 'persistent' && (
                         <>
                             {!minimized && (
-                                <Divider className={classes.divider} />
+                                <Divider className={classes.divider}/>
                             )}
 
                             {renderFooter}
@@ -460,6 +479,11 @@ const styles = theme => {
                     backgroundColor: primaryAccent,
                 },
             },
+        },
+
+        disabled: {
+            cursor: 'not-allowed',
+            color: '#aaa',
         },
 
         active: {},
