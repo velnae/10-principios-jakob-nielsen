@@ -91,13 +91,14 @@ const Account = props => {
                                 }
                             >
                                 <InputLabel htmlFor="email">
-                                    Email{' '}
+                                    Correo{' '}
                                     <span className={classes.required}>*</span>
                                 </InputLabel>
 
                                 <Input
                                     id="email"
                                     name="email"
+                                    type="email"
                                     value={values.email}
                                     onChange={handleChange}
                                     fullWidth

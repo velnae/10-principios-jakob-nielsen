@@ -271,6 +271,7 @@ function Header(props) {
         onDrawerToggle,
         onLocaleMenuToggle,
         onAccountMenuToggle,
+        activateStepsGuide
     } = props;
 
     const {
@@ -673,7 +674,10 @@ function Header(props) {
                                     <Tooltip
                                         title={Lang.get('navigation.help')}
                                     >
-                                        <IconButton color="inherit">
+                                        <IconButton
+                                            color="inherit"
+                                            onClick={activateStepsGuide}
+                                        >
                                             <HelpIcon />
                                         </IconButton>
                                     </Tooltip>

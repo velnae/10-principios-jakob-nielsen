@@ -90,6 +90,7 @@ function SignIn(props) {
 
             history.push(`${location.pathname}${queryString}`);
         } catch (error) {
+            console.log(error);
             if (!error.response) {
                 throw new Error('Unknown error');
             }
@@ -98,6 +99,8 @@ function SignIn(props) {
 
             if (errors) {
                 setErrors(errors);
+            } else {
+                setErrors({'username' : 'Error interno en el servidor, intenta en unos minutos o contacte con el administrador del sistema'})
             }
 
             setLoading(false);

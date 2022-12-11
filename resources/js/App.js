@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { HashRouter as Router } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {HashRouter as Router} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
+import {CssBaseline, MuiThemeProvider} from '@material-ui/core';
 
-import { Navigator } from './core';
-import { ROUTES } from './config';
-import { Loading } from './views';
-import { AppProvider } from './AppContext';
+import {Navigator} from './core';
+import {ROUTES} from './config';
+import {Loading} from './views';
+import {AppProvider} from './AppContext';
 
 function App(props) {
     const [initialized, setInitialized] = useState(false);
@@ -19,6 +19,7 @@ function App(props) {
     const [username, setUsername] = useState('');
     const [monitoringEnabled, setMonitoringEnabled] = useState(false);
     const [responseInterceptor, setResponseInterceptor] = useState(null);
+
 
     /**
      * Determine if monitoring is enabled.
@@ -256,7 +257,7 @@ function App(props) {
         setInitialized(true);
     }, [initialized]);
 
-    const { environment, darkTheme, lightTheme } = props;
+    const {environment, darkTheme, lightTheme} = props;
 
     const pageProps = {
         // Props
@@ -279,22 +280,24 @@ function App(props) {
         handleSignOut,
     };
 
+
     return (
         <MuiThemeProvider theme={nightMode ? darkTheme : lightTheme}>
-            <CssBaseline />
+            <CssBaseline/>
 
             <AppProvider {...pageProps}>
                 {loading ? (
-                    <Loading />
+                    <Loading/>
                 ) : (
                     <Router>
-                        <Navigator />
+                        <Navigator/>
                     </Router>
                 )}
             </AppProvider>
         </MuiThemeProvider>
     );
 }
+
 
 App.propTypes = {
     environment: PropTypes.oneOf(['backoffice']).isRequired,

@@ -1,20 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
-import {
-    AppBar,
-    CircularProgress,
-    CssBaseline,
-    Grid,
-    Hidden,
-    withStyles,
-} from '@material-ui/core';
+import {AppBar, CircularProgress, CssBaseline, Grid, Hidden, withStyles,} from '@material-ui/core';
 
-import { Breadcrumbs, Snackbar, Modal } from '../../../ui';
-import { LinearDeterminate } from '../../../ui/Loaders';
-import { Footer, Header, Sidebar } from '../partials';
-import { AppContext } from '../../../AppContext';
+import {Breadcrumbs, Modal, Snackbar} from '../../../ui';
+import {LinearDeterminate} from '../../../ui/Loaders';
+import {Footer, Header, Sidebar} from '../partials';
+import {AppContext} from '../../../AppContext';
+import {Steps} from 'intro.js-react';
+import 'intro.js/introjs.css';
 
 function Master(props) {
     const [minimized, setMinimized] = useState(false);
@@ -69,9 +64,9 @@ function Master(props) {
         //
     });
 
-    const { nightMode } = useContext(AppContext);
+    const {nightMode} = useContext(AppContext);
 
-    const { classes, showBreadcrumbs, ...other } = props;
+    const {classes, showBreadcrumbs, ...other} = props;
 
     const {
         children,
@@ -91,7 +86,7 @@ function Master(props) {
             alignItems="center"
         >
             <Grid item>
-                <CircularProgress color="primary" />
+                <CircularProgress color="primary"/>
             </Grid>
         </Grid>
     );
@@ -119,12 +114,64 @@ function Master(props) {
         </AppBar>
     );
 
+    const [stepsEnabled, setStepsEnabled] = useState(false);
+    const [initialStep, setInitialStep] = useState(0);
+    const [steps, setSteps] = useState([
+        {
+            element: '.anyselector',
+            intro: 'Bienvenido a la guia del sistema'
+        },
+        {
+            element: '#root > div > div > div:nth-child(2) > div > div > div:nth-child(2) > button',
+            intro: 'World step',
+        },
+        {
+            element: '#root > div > nav > div > div > div > div > div > ul > ul > div:nth-child(1)',
+            intro: 'World step',
+        },
+        {
+            element: '#root > div > div > main > div > div > div > div > form > div:nth-child(2) > div:nth-child(1)',
+            intro: 'World step',
+        },
+    ]);
+    const onExit = () => {
+        setStepsEnabled(false);
+    };
+
+    const activateStepsGuide = () => {
+        console.log('asda');
+        setStepsEnabled(true);
+    };
+
     return (
         <>
-            {loading && <LinearDeterminate className={classes.loader} />}
+            {loading && <LinearDeterminate className={classes.loader}/>}
+
+            <Steps
+                enabled={stepsEnabled}
+                steps={steps}
+                ref={(ref) => {
+                    steps.current = ref;
+                }}
+                initialStep={initialStep}
+                onExit={onExit}
+                onBeforeChange={(nextStepIndex) => {
+                    if (nextStepIndex > 0) {
+                        steps.current.updateStepElement(nextStepIndex);
+                    }
+                }}
+                options={{
+                    nextLabel: 'Siguiente',
+                    prevLabel: 'Anterior',
+                    doneLabel: 'Terminar',
+                    showProgress: true,
+                    showBullets: false,
+                    showStepNumbers: false
+                }}
+            />
 
             <div className={classes.root}>
-                <CssBaseline />
+                <CssBaseline/>
 
                 <nav
                     className={classNames(classes.drawer, {
@@ -139,7 +186,7 @@ function Master(props) {
                             variant="temporary"
                             open={mobileOpen}
                             onClose={handleDrawerToggled}
-                            PaperProps={{ style: { width: drawerWidth } }}
+                            PaperProps={{style: {width: drawerWidth}}}
                         />
                     </Hidden>
 
@@ -151,7 +198,7 @@ function Master(props) {
                             minimized={minimized}
                             setMinimized={setMinimized}
                             PaperProps={{
-                                style: { width: minimized ? 70 : drawerWidth },
+                                style: {width: minimized ? 70 : drawerWidth},
                             }}
                         />
                     </Hidden>
@@ -167,6 +214,7 @@ function Master(props) {
                         onDrawerToggle={handleDrawerToggled}
                         onAccountMenuToggle={handleAccountMenuToggled}
                         onLocaleMenuToggle={handleLocaleMenuToggled}
+                        activateStepsGuide={activateStepsGuide}
                     />
 
                     {showBreadcrumbs && renderBreadcrumbs}
@@ -179,7 +227,7 @@ function Master(props) {
                         )}
                     </main>
 
-                    <Footer />
+                    <Footer/>
                 </div>
             </div>
 
