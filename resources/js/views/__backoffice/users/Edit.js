@@ -144,7 +144,7 @@ function Edit(props) {
     const { classes, ...other } = props;
     const { history } = props;
 
-    const steps = ['Profile', 'Account', 'Avatar'];
+    const steps = ['Perfil', 'Cuenta', 'Imagen'];
 
     const renderLoading = (
         <Grid
@@ -223,7 +223,7 @@ function Edit(props) {
     return (
         <MasterLayout
             {...other}
-            pageTitle="Edit user"
+            pageTitle="Editar usuario"
             tabs={[]}
             message={message}
         >

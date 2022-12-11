@@ -18,6 +18,10 @@ import {
 
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
 import MomentUtils from '@date-io/moment';
+import moment from 'moment';
+import 'moment/locale/es';
+
+moment.locale('es');
 
 const Profile = props => {
     const { classes, values, handleSubmit } = props;
@@ -86,7 +90,7 @@ const Profile = props => {
                                 }
                             >
                                 <InputLabel htmlFor="firstname">
-                                    Firstname{' '}
+                                    Nombres{' '}
                                     <span className={classes.required}>*</span>
                                 </InputLabel>
 
@@ -108,36 +112,36 @@ const Profile = props => {
                             </FormControl>
                         </Grid>
 
-                        <Grid item xs={12} sm={4}>
-                            <FormControl
-                                className={classes.formControl}
-                                error={
-                                    submitCount > 0 &&
-                                    errors.hasOwnProperty('middlename')
-                                }
-                            >
-                                <InputLabel htmlFor="middlename">
-                                    Middlename
-                                </InputLabel>
+                        {/*<Grid item xs={12} sm={4}>*/}
+                        {/*    <FormControl*/}
+                        {/*        className={classes.formControl}*/}
+                        {/*        error={*/}
+                        {/*            submitCount > 0 &&*/}
+                        {/*            errors.hasOwnProperty('middlename')*/}
+                        {/*        }*/}
+                        {/*    >*/}
+                        {/*        <InputLabel htmlFor="middlename">*/}
+                        {/*            Middlename*/}
+                        {/*        </InputLabel>*/}
 
-                                <Input
-                                    id="middlename"
-                                    name="middlename"
-                                    value={values.middlename}
-                                    onChange={handleChange}
-                                    fullWidth
-                                />
+                        {/*        <Input*/}
+                        {/*            id="middlename"*/}
+                        {/*            name="middlename"*/}
+                        {/*            value={values.middlename}*/}
+                        {/*            onChange={handleChange}*/}
+                        {/*            fullWidth*/}
+                        {/*        />*/}
 
-                                {submitCount > 0 &&
-                                    errors.hasOwnProperty('middlename') && (
-                                        <FormHelperText>
-                                            {errors.middlename}
-                                        </FormHelperText>
-                                    )}
-                            </FormControl>
-                        </Grid>
+                        {/*        {submitCount > 0 &&*/}
+                        {/*            errors.hasOwnProperty('middlename') && (*/}
+                        {/*                <FormHelperText>*/}
+                        {/*                    {errors.middlename}*/}
+                        {/*                </FormHelperText>*/}
+                        {/*            )}*/}
+                        {/*    </FormControl>*/}
+                        {/*</Grid>*/}
 
-                        <Grid item xs={12} sm={4}>
+                        <Grid item xs={12} sm={8}>
                             <FormControl
                                 className={classes.formControl}
                                 error={
@@ -146,7 +150,7 @@ const Profile = props => {
                                 }
                             >
                                 <InputLabel htmlFor="lastname">
-                                    Lastname{' '}
+                                    Apellidos{' '}
                                     <span className={classes.required}>*</span>
                                 </InputLabel>
 
@@ -177,7 +181,7 @@ const Profile = props => {
                                     errors.hasOwnProperty('gender')
                                 }
                             >
-                                <InputLabel htmlFor="gender">Gender</InputLabel>
+                                <InputLabel htmlFor="gender">Género</InputLabel>
 
                                 <Select
                                     id="gender"
@@ -188,12 +192,12 @@ const Profile = props => {
                                     autoWidth
                                 >
                                     <MenuItem value="">
-                                        Please select the gender
+                                        Porfavor selecciona tu género
                                     </MenuItem>
 
-                                    <MenuItem value="female">Female</MenuItem>
+                                    <MenuItem value="female">Femenino</MenuItem>
 
-                                    <MenuItem value="male">Male</MenuItem>
+                                    <MenuItem value="male">Masculino</MenuItem>
                                 </Select>
 
                                 {submitCount > 0 &&
@@ -213,21 +217,21 @@ const Profile = props => {
                                     errors.hasOwnProperty('birthdate')
                                 }
                             >
-                                <MuiPickersUtilsProvider utils={MomentUtils}>
+                                <MuiPickersUtilsProvider utils={MomentUtils} libInstance={moment} >
                                     <DatePicker
                                         id="birthdate"
                                         name="birthdate"
-                                        label="Birthdate"
-                                        placeholder="Please pick the birthdate"
+                                        label="Fecha de nacimiento"
+                                        placeholder="Porfavor selecciona fecha de nacimiento"
                                         value={values.birthdate}
                                         onChange={date =>
                                             setFieldValue('birthdate', date)
                                         }
-                                        format="YYYY-MM-DD"
+                                        format="DD-MM-YYYY"
                                         maxDate={moment()
-                                            .subtract(10, 'y')
+                                            .subtract(20, 'y')
                                             .subtract(1, 'd')
-                                            .format('YYYY-MM-DD')}
+                                            .format('DD-MM-YYYY')}
                                         keyboard
                                         clearable
                                         disableFuture
@@ -254,7 +258,7 @@ const Profile = props => {
                                 }
                             >
                                 <InputLabel htmlFor="address">
-                                    Address
+                                    Dirección
                                 </InputLabel>
 
                                 <Input
@@ -292,7 +296,7 @@ const Profile = props => {
                                     isSubmitting
                                 }
                             >
-                                Next
+                                Siguiente
                             </Button>
                         </Grid>
                     </Grid>

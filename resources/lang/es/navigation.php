@@ -16,7 +16,7 @@ return [
     'signin_guest_title' => 'Ingresar',
     'signin_guest_subtitle' => 'Con tu cuenta',
     'signin_identified_title' => 'Bienvenido',
-    'forgot_email' => 'Olvidaste el correo?',
+    'forgot_email' => 'Olvidaste el usuario?',
     'forgot_password' => 'Olvidaste la clave?',
     'next' => 'Siguiente',
     'previous' => 'Anterior',

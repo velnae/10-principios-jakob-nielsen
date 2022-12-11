@@ -115,22 +115,22 @@ function Dropzone(props) {
 
     const getfileRejectedMessage = file => {
         let errors = [];
-
+        debugger
         if (
-            acceptedFileTypes.filter(type => type.indexOf(file.type) < 0)
+            acceptedFileTypes.filter(type => type.indexOf(file.type) !== -1)
                 .length === 0
         ) {
-            errors.push(`File type is invalid.`);
+            errors.push(`Tipo de archivo no aceptado`);
         }
 
         if (file.size / 1000 / 1000 > maxFileSize) {
             errors.push(
-                `File size is over the limit of ${maxFileSize} megabytes.`,
+                `El tamaño de la imagen es mas de ${maxFileSize} megabyte. No se guardara`,
             );
         }
 
         if (errors.length === 0) {
-            return 'File not accepted due to unknown error.';
+            return 'Archivo no aceptado debido a un error desconocido';
         }
 
         return errors[0];
@@ -138,7 +138,7 @@ function Dropzone(props) {
 
     const removeFile = removedFile => {
         if (removedFile.status === 'uploading') {
-            const confirmed = confirm('The file is being uploaded, stop it?');
+            const confirmed = confirm('El archivo se esta subiendo, desea detenerlo?');
 
             if (!confirmed) {
                 return;
@@ -288,7 +288,7 @@ function Dropzone(props) {
                     if (key === 0 && file.status === 'queued') {
                         return Object.assign(file, {
                             status: 'uploading',
-                            message: '',
+                            message: 'Subiendo la imagen',
                         });
                     }
 
@@ -296,7 +296,7 @@ function Dropzone(props) {
                     if (key + 1 > maxFiles) {
                         return Object.assign(file, {
                             status: 'rejected',
-                            message: 'It could not accept more files.',
+                            message: 'Podria no aceptar mas de un archivo.',
                         });
                     }
 
@@ -405,8 +405,8 @@ function Dropzone(props) {
                                     onClick={() => removeFile(file)}
                                 >
                                     {file.status === 'uploading'
-                                        ? 'Cancel'
-                                        : 'Remove File'}
+                                        ? 'Cancelar'
+                                        : 'Eliminar archivo'}
                                 </Typography>
                             </Grid>
                         ))
@@ -440,15 +440,15 @@ function Dropzone(props) {
                     <Grid item className={classes.textCenter}>
                         <Typography className={classes.text} gutterBottom>
                             {isDragActive
-                                ? `Drag files here`
-                                : `Drag 'n' drop some files here`}
+                                ? `Arrastra aqui la imagen`
+                                : `Arrastre y suelte alguna imagen aquí`}
                         </Typography>
 
                         <Typography
                             className={classNames(classes.text)}
                             gutterBottom
                         >
-                            Or
+                            O
                         </Typography>
 
                         <Button
@@ -456,7 +456,7 @@ function Dropzone(props) {
                             variant="contained"
                             onClick={open}
                         >
-                            Browse Files
+                            Examinar archivos
                         </Button>
                     </Grid>
                 )}

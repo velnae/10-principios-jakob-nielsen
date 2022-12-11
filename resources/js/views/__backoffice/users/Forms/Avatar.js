@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Grid, Typography, withStyles } from '@material-ui/core';
+import {Button, Grid, Typography, withStyles} from '@material-ui/core';
 
-import { Dropzone } from '../../../../ui';
+import {Dropzone} from '../../../../ui';
 
 function Avatar(props) {
     const [files, setFiles] = useState([]);
@@ -14,7 +14,7 @@ function Avatar(props) {
      * @return {array}
      */
     const loadFiles = (reset = false) => {
-        const { user } = props;
+        const {user} = props;
 
         if (!user.hasOwnProperty('filename')) {
             return;
@@ -46,7 +46,7 @@ function Avatar(props) {
      * @return {undefined}
      */
     const handleFileRemoved = async (file, removed) => {
-        const { user } = props;
+        const {user} = props;
 
         try {
             const response = await axios.delete(
@@ -62,7 +62,7 @@ function Avatar(props) {
             removed(true);
         } catch (error) {
             if (!error.response) {
-                removed(false, 'File not removed due to unknown error.');
+                removed(false, 'Imagen no subida, debido a un error desconocido');
 
                 return;
             }
@@ -80,7 +80,7 @@ function Avatar(props) {
      * @return {undefined}
      */
     const handleUpload = async (file, done) => {
-        const { user } = props;
+        const {user} = props;
 
         try {
             const formData = new FormData();
@@ -104,7 +104,7 @@ function Avatar(props) {
             done(true);
         } catch (error) {
             if (!error.response) {
-                removed(false, 'File not uploaded due to unknown error.');
+                removed(false, 'Imagen no subida, debido a un error desconocido.');
 
                 return;
             }
@@ -121,23 +121,28 @@ function Avatar(props) {
         loadFiles();
     });
 
-    const { classes, handleSkip } = props;
+    const {classes, handleSkip} = props;
 
     return (
         <>
             <Typography variant="h6" gutterBottom>
-                Avatar Upload
+                Subir imagen de perfil
+            </Typography>
+
+            <Typography variant="subtitle1" gutterBottom>
+                (Solo se acepta formatos jpeg, jpg, png y Máximo 1Mb)
             </Typography>
 
             <Dropzone
                 initialFiles={files}
                 maxFiles={1}
-                maxFileSize={25}
+                maxFileSize={1}
+                acceptedFileTypes={['image/jpeg', 'image/png', 'image/jpg']}
                 handleUpload={handleUpload}
                 handleFileRemoved={handleFileRemoved}
             />
 
-            <div className={classes.sectionSpacer} />
+            <div className={classes.sectionSpacer}/>
 
             <Grid container spacing={24} justify="flex-end">
                 <Grid item>
@@ -146,7 +151,7 @@ function Avatar(props) {
                         color="primary"
                         onClick={handleSkip}
                     >
-                        Finish
+                        Terminar
                     </Button>
                 </Grid>
             </Grid>

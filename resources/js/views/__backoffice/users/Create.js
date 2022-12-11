@@ -101,7 +101,7 @@ function Create(props) {
     const { classes, ...other } = props;
     const { history } = props;
 
-    const steps = ['Profile', 'Account', 'Avatar'];
+    const steps = ['Perfil', 'Cuenta', 'Imagen'];
 
     const renderForm = () => {
         const defaultProfileValues = {
@@ -162,7 +162,7 @@ function Create(props) {
     return (
         <MasterLayout
             {...other}
-            pageTitle="Create a user"
+            pageTitle="Crear un usuario"
             tabs={[]}
             message={message}
         >
@@ -177,7 +177,7 @@ function Create(props) {
                             align="center"
                             gutterBottom
                         >
-                            User Creation
+                            Creación de usuario
                         </Typography>
 
                         <Stepper

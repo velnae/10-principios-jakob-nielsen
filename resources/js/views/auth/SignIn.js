@@ -244,8 +244,8 @@ function SignIn(props) {
                                         <TextField
                                             id="username"
                                             name="username"
-                                            label="Username"
-                                            placeholder="jovert123"
+                                            label="Usuario"
+                                            placeholder=""
                                             value={values.username}
                                             onChange={handleChange}
                                             variant="outlined"
@@ -280,8 +280,8 @@ function SignIn(props) {
                                             }
                                             id="password"
                                             name="password"
-                                            label="Password"
-                                            placeholder="secret"
+                                            label="Clave"
+                                            placeholder=""
                                             value={values.password}
                                             onChange={handleChange}
                                             variant="outlined"

@@ -35,7 +35,7 @@ const Account = props => {
             {({ values, handleChange, errors, submitCount, isSubmitting }) => (
                 <Form>
                     <Typography variant="h6" gutterBottom>
-                        Account Settings
+                        Configuraciones de la cuenta
                     </Typography>
 
                     <Grid container spacing={24}>
@@ -48,7 +48,7 @@ const Account = props => {
                                 }
                             >
                                 <InputLabel htmlFor="type">
-                                    Type{' '}
+                                    Tipo{' '}
                                     <span className={classes.required}>*</span>
                                 </InputLabel>
 
@@ -65,10 +65,10 @@ const Account = props => {
                                     </MenuItem>
 
                                     <MenuItem value="superuser">
-                                        Superuser
+                                        Super usuario
                                     </MenuItem>
 
-                                    <MenuItem value="user">User</MenuItem>
+                                    <MenuItem value="user">Usuario</MenuItem>
                                 </Select>
 
                                 {submitCount > 0 &&
@@ -122,7 +122,7 @@ const Account = props => {
                                 }
                             >
                                 <InputLabel htmlFor="username">
-                                    Username
+                                    Usuario
                                 </InputLabel>
 
                                 <Input
@@ -151,7 +151,7 @@ const Account = props => {
                                 onClick={handleBack}
                                 className={classes.backButton}
                             >
-                                Back
+                                Atras
                             </Button>
 
                             <Button
@@ -165,7 +165,7 @@ const Account = props => {
                                     isSubmitting
                                 }
                             >
-                                Next
+                                Siguiente
                             </Button>
                         </Grid>
                     </Grid>
