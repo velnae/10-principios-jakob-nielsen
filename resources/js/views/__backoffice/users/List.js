@@ -45,10 +45,10 @@ function List(props) {
         setAlert({
             type: 'confirmation',
             title: Lang.get('resources.delete_confirmation_title', {
-                name: 'User',
+                name: 'Usuario',
             }),
             body: Lang.get('resources.delete_confirmation_body', {
-                name: 'User',
+                name: 'Usuario',
             }),
             confirmText: Lang.get('actions.continue'),
             confirmed: async () => await deleteUser(resourceId),
@@ -164,7 +164,7 @@ function List(props) {
             setMessage({
                 type: 'success',
                 body: Lang.get('resources.restored', {
-                    name: 'User',
+                    name: 'Usuario',
                 }),
                 closed: () => setMessage({}),
             });
@@ -174,7 +174,7 @@ function List(props) {
             setMessage({
                 type: 'error',
                 body: Lang.get('resources.not_restored', {
-                    name: 'User',
+                    name: 'Usuario',
                 }),
                 closed: () => setMessage({}),
                 actionText: Lang.get('actions.retry'),
@@ -202,7 +202,7 @@ function List(props) {
             setMessage({
                 type: 'success',
                 body: Lang.get('resources.deleted', {
-                    name: 'User',
+                    name: 'Usuario',
                 }),
                 closed: () => setMessage({}),
                 actionText: Lang.get('actions.undo'),
@@ -214,7 +214,7 @@ function List(props) {
             setMessage({
                 type: 'error',
                 body: Lang.get('resources.not_deleted', {
-                    name: 'User',
+                    name: 'Usuario',
                 }),
                 closed: () => setMessage({}),
                 actionText: Lang.get('actions.retry'),
@@ -347,7 +347,7 @@ function List(props) {
 
     const primaryAction = {
         text: Lang.get('resources.create', {
-            name: 'User',
+            name: 'Usuario',
         }),
         clicked: () =>
             history.push(
@@ -422,7 +422,7 @@ function List(props) {
                     <div style={{ width: 120, flex: 'no-wrap' }}>
                         <Tooltip
                             title={Lang.get('resources.edit_image', {
-                                name: 'User',
+                                name: 'Usuario',
                             })}
                         >
                             <IconButton
@@ -446,7 +446,7 @@ function List(props) {
 
                         <Tooltip
                             title={Lang.get('resources.edit', {
-                                name: 'User',
+                                name: 'Usuario',
                             })}
                         >
                             <IconButton
@@ -468,7 +468,7 @@ function List(props) {
                         {authUser.id !== user.id && (
                             <Tooltip
                                 title={Lang.get('resources.delete', {
-                                    name: 'User',
+                                    name: 'Usuario',
                                 })}
                             >
                                 <IconButton

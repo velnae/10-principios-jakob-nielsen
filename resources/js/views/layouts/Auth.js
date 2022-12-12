@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Grid, Card, Typography, Button, withStyles } from '@material-ui/core';
 
 import { LinearIndeterminate } from '../../ui/Loaders';
-import logoLight from '../../../img/logos/short-light.svg';
-import logoDark from '../../../img/logos/short-dark.svg';
+import logoLight from '../../../img/logos/short-light.png';
+import logoDark from '../../../img/logos/short-dark.png';
 import { AppContext } from '../../AppContext';
 
 /**

@@ -238,7 +238,7 @@ function Edit(props) {
                             align="center"
                             gutterBottom
                         >
-                            User Modification
+                            Edición de Usuario
                         </Typography>
 
                         <Stepper

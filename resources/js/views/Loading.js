@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { withStyles, Grid, CircularProgress } from '@material-ui/core';
 
-import darkLogo from '../../img/logos/short-dark.svg';
-import lightLogo from '../../img/logos/short-light.svg';
+import darkLogo from '../../img/logos/short-dark.png';
+import lightLogo from '../../img/logos/short-light.png';
 import { AppContext } from '../AppContext';
 
 const Loading = props => {
