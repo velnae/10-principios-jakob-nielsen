@@ -23,6 +23,7 @@ import {
     ExpandLess as ExpandLessIcon,
     People as PeopleIcon,
     Person as PersonIcon,
+    Info as SupportIcon,
     Security as SecurityIcon,
     ShowChart as ShowChartIcon,
 } from '@material-ui/icons';
@@ -129,6 +130,19 @@ function Sidebar(props) {
                     name: 'Usuarios',
                     disabled: true,
                     icon: <ShowChartIcon/>,
+                    path: null,
+                },
+            ],
+        },
+
+        {
+            name: 'Ayuda',
+            id: 'ayuda',
+            links: [
+                {
+                    name: 'Guia de uso',
+                    disabled: true,
+                    icon: <SupportIcon/>,
                     path: null,
                 },
             ],

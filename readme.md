@@ -1,6 +1,12 @@
 # Los 10 principios de usabilidad de Jakob Nielsen
 
-Este es un proyecto simple que viene con autenticacion y CRUD de uesrs, es una single page application SPA cosntruido con 
+Este es un proyecto simple que muestra el mejor uso para los 10 principios de usabilidad como se muestra en la siguiente Web:  
+
+https://diegoamorin.com/10-principios-usabilidad/  
+
+Tien autenticación JWT y CRUD de users, es una single page application SPA cosntruido con
+
+
 - [NodeJs 16](https://nodejs.org/en/blog/release/v16.16.0/) in the frontend 
 - [React.js 16](https://reactjs.org) in the frontend 
 - [PHP 7.3](https://www.php.net/manual/es/migration73.php) in the backend.
