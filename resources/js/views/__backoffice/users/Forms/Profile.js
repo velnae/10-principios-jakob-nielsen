@@ -207,6 +207,7 @@ const Profile = props => {
                                         clearable
                                         disableFuture
                                         invalidDateMessage='Formato invalido'
+                                        maxDateMessage="Debe tener al menos 20 Años"
                                     />
                                 </MuiPickersUtilsProvider>
 

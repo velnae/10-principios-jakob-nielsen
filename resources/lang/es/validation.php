@@ -40,7 +40,7 @@ return [
     'distinct'             => 'El campo :attribute tiene un valor duplicado.',
     'email'                => 'El campo :attribute debe ser una dirección de correo válida.',
     'ends_with'            => 'El campo :attribute debe finalizar con alguno de los siguientes valores: :values',
-    'exists'               => 'El campo :attribute seleccionado no existe.',
+    'exists'               => 'No existe registros con este valor',
     'file'                 => 'El campo :attribute debe ser un archivo.',
     'filled'               => 'El campo :attribute debe tener un valor.',
     'gt'                   => [
@@ -89,7 +89,7 @@ return [
         'string'  => 'El campo :attribute debe contener al menos :min caracteres.',
         'array'   => 'El campo :attribute debe contener al menos :min elementos.',
     ],
-    'not_in'               => 'El campo :attribute seleccionado es inválido.',
+    'not_in'               => 'El campo :attribute es inválido.',
     'not_regex'            => 'El formato del campo :attribute es inválido.',
     'numeric'              => 'El campo :attribute debe ser un número.',
     'password'             => 'La contraseña es incorrecta.',

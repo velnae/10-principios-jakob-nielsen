@@ -1,10 +1,9 @@
-import React, { useCallback, useContext } from 'react';
+import React, {useContext, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import {
     AppBar,
     Avatar,
-    Badge,
     Button,
     ClickAwayListener,
     colors,
@@ -14,10 +13,10 @@ import {
     Hidden,
     IconButton,
     ListItemAvatar,
-    ListItemText,
     ListItemIcon,
-    MenuList,
+    ListItemText,
     MenuItem,
+    MenuList,
     Paper,
     Popper,
     Tab,
@@ -31,37 +30,31 @@ import {
 import {
     ExitToApp as ExitToAppIcon,
     Help as HelpIcon,
-    Language as LanguageIcon,
     Lock as LockIcon,
     Menu as MenuIcon,
     Notifications as NotificationsIcon,
     Settings as SettingsIcon,
-    Update as UpdateIcon,
 } from '@material-ui/icons';
 
 import * as NavigationUtils from '../../../helpers/Navigation';
 import * as RandomUtils from '../../../helpers/Random';
-import {
-    GitHub as GitHubIcon,
-    LightbulbOff as LightbulbOffIcon,
-    LightbulbOn as LightbulbOnIcon,
-} from '../../../icons/1x1';
-import { Ph as PhIcon, Us as UsIcon } from '../../../icons/flags/4x3';
-import { Skeleton } from '../../../ui';
-import { AppContext } from '../../../AppContext';
+import {LightbulbOff as LightbulbOffIcon, LightbulbOn as LightbulbOnIcon,} from '../../../icons/1x1';
+import {Ph as PhIcon, Us as UsIcon} from '../../../icons/flags/4x3';
+import {Skeleton} from '../../../ui';
+import {AppContext} from '../../../AppContext';
 
 const UserAvatar = props => {
-    const { user } = props;
+    const {user} = props;
 
     return user.thumbnail_url !== null ? (
-        <Avatar alt={user.name} src={user.thumbnail_url} />
+        <Avatar alt={user.name} src={user.thumbnail_url}/>
     ) : (
         <Avatar
             style={{
                 fontSize: 17,
                 backgroundColor: RandomUtils.color(
                     user.firstname.length -
-                        user.created_at.charAt(user.created_at.length - 2),
+                    user.created_at.charAt(user.created_at.length - 2),
                 ),
             }}
         >
@@ -77,7 +70,7 @@ UserAvatar.propTypes = {
 };
 
 const LocaleMenu = props => {
-    const { classes, localeMenuOpen, onLocaleMenuToggle } = props;
+    const {classes, localeMenuOpen, onLocaleMenuToggle} = props;
 
     return (
         <Popper
@@ -86,7 +79,7 @@ const LocaleMenu = props => {
             transition
             disablePortal
         >
-            {({ TransitionProps, placement }) => (
+            {({TransitionProps, placement}) => (
                 <Grow
                     {...TransitionProps}
                     style={{
@@ -113,7 +106,7 @@ const LocaleMenu = props => {
                                     <ListItemIcon
                                         className={classes.navLinkMenuItemIcon}
                                     >
-                                        <UsIcon />
+                                        <UsIcon/>
                                     </ListItemIcon>
 
                                     <Typography>
@@ -135,7 +128,7 @@ const LocaleMenu = props => {
                                     <ListItemIcon
                                         className={classes.navLinkMenuItemIcon}
                                     >
-                                        <PhIcon />
+                                        <PhIcon/>
                                     </ListItemIcon>
 
                                     <Typography>
@@ -152,7 +145,7 @@ const LocaleMenu = props => {
 };
 
 const AccountMenu = props => {
-    const { user, handleLock, handleSignOut } = useContext(AppContext);
+    const {user, handleLock, handleSignOut} = useContext(AppContext);
 
     const {
         history,
@@ -164,6 +157,21 @@ const AccountMenu = props => {
 
     const navigate = path => history.push(path);
 
+    const _handleKeyDown = (event) => {
+        event = event || window.event;
+        var key = event.which || event.keyCode; // keyCode detection
+        var ctrl = event.ctrlKey ? event.ctrlKey : ((key === 17) ? true : false); // ctrl detection
+
+        if ( key == 76 && ctrl ) {
+            console.log("Ctrl + L");
+            handleLock(user.username);
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("keydown", _handleKeyDown);
+    }, []);
+
     return (
         <Popper
             open={accountMenuOpen}
@@ -171,7 +179,7 @@ const AccountMenu = props => {
             transition
             disablePortal
         >
-            {({ TransitionProps, placement }) => (
+            {({TransitionProps, placement}) => (
                 <Grow
                     {...TransitionProps}
                     style={{
@@ -181,14 +189,14 @@ const AccountMenu = props => {
                                 : 'center bottom',
                     }}
                 >
-                    <Paper style={{ marginTop: -3 }}>
+                    <Paper style={{marginTop: -3}}>
                         <ClickAwayListener onClickAway={onAccountMenuToggle}>
                             <MenuList>
-                                <MenuItem style={{ height: 50 }}>
+                                <MenuItem style={{height: 50}}>
                                     <ListItemAvatar
                                         className={classes.navLinkMenuItemIcon}
                                     >
-                                        <UserAvatar user={user} />
+                                        <UserAvatar user={user}/>
                                     </ListItemAvatar>
 
                                     <ListItemText>
@@ -212,7 +220,7 @@ const AccountMenu = props => {
                                     <ListItemIcon
                                         className={classes.navLinkMenuItemIcon}
                                     >
-                                        <SettingsIcon />
+                                        <SettingsIcon/>
                                     </ListItemIcon>
 
                                     <Typography>
@@ -220,7 +228,7 @@ const AccountMenu = props => {
                                     </Typography>
                                 </MenuItem>
 
-                                <Divider />
+                                <Divider/>
 
                                 <MenuItem
                                     onClick={() => handleLock(user.username)}
@@ -228,11 +236,14 @@ const AccountMenu = props => {
                                     <ListItemIcon
                                         className={classes.navLinkMenuItemIcon}
                                     >
-                                        <LockIcon />
+                                        <LockIcon/>
                                     </ListItemIcon>
 
                                     <Typography>
-                                        {Lang.get('navigation.lock')}
+                                        {Lang.get('navigation.lock')} {' '}
+                                        <Button variant="outlined" size="small" style={{marginLeft: 1}}>
+                                            Ctrl + L
+                                        </Button>
                                     </Typography>
                                 </MenuItem>
 
@@ -240,7 +251,7 @@ const AccountMenu = props => {
                                     <ListItemIcon
                                         className={classes.navLinkMenuItemIcon}
                                     >
-                                        <ExitToAppIcon />
+                                        <ExitToAppIcon/>
                                     </ListItemIcon>
 
                                     <Typography>
@@ -294,7 +305,7 @@ function Header(props) {
                 aria-label="Open drawer"
                 className={classes.menuButton}
             >
-                <Skeleton {...skeletonProps} height={25} width={25} />
+                <Skeleton {...skeletonProps} height={25} width={25}/>
             </IconButton>
         </Grid>
     );
@@ -331,7 +342,7 @@ function Header(props) {
                             )}
                         </Hidden>
 
-                        <Grid item xs />
+                        <Grid item xs/>
 
                         <Grid item>
                             <IconButton color="inherit">
@@ -489,7 +500,7 @@ function Header(props) {
                     onClick={onDrawerToggle}
                     className={classes.menuButton}
                 >
-                    <MenuIcon />
+                    <MenuIcon/>
                 </IconButton>
             </Tooltip>
         </Grid>
@@ -525,7 +536,7 @@ function Header(props) {
                             )}
                         </Hidden>
 
-                        <Grid item xs />
+                        <Grid item xs/>
 
                         {/* <Grid item>
                             <Tooltip title={Lang.get('navigation.github')}>
@@ -570,7 +581,7 @@ function Header(props) {
                                     >
                                         <NotificationsIcon />
                                     </Badge> */}
-                                        <NotificationsIcon />
+                                    <NotificationsIcon/>
                                 </IconButton>
                             </Tooltip>
                         </Grid>
@@ -607,9 +618,9 @@ function Header(props) {
                                     onClick={handleNightModeToggled}
                                 >
                                     {nightMode ? (
-                                        <LightbulbOnIcon />
+                                        <LightbulbOnIcon/>
                                     ) : (
-                                        <LightbulbOffIcon />
+                                        <LightbulbOffIcon/>
                                     )}
                                 </IconButton>
                             </Tooltip>
@@ -628,7 +639,7 @@ function Header(props) {
                                     >
                                         {user.hasOwnProperty(
                                             'thumbnail_url',
-                                        ) && <UserAvatar user={user} />}
+                                        ) && <UserAvatar user={user}/>}
                                     </IconButton>
 
                                     <AccountMenu {...props} />
@@ -678,7 +689,7 @@ function Header(props) {
                                             color="inherit"
                                             onClick={activateStepsGuide}
                                         >
-                                            <HelpIcon />
+                                            <HelpIcon/>
                                         </IconButton>
                                     </Tooltip>
                                 </Grid>

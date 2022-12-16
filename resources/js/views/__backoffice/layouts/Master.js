@@ -137,6 +137,10 @@ function Master(props) {
                         intro: 'Desde aquí podrás volver a mostrar esta Ayuda',
                     },
                     {
+                        element: '#root > div > div > header > div > div > div:nth-child(3) button',
+                        intro: 'Puedes cambiar a modo nocturno los colores de la interfaz, haciendo click aquí.',
+                    },
+                    {
                         element: '#root > div > nav > div > div > div > div > div > ul > div',
                         intro: 'Actualmente nos encontramos aqui el panel de bienvenida, el menu activo se muestra de color diferente al resto',
                     },
@@ -149,7 +153,7 @@ function Master(props) {
                         intro: 'Menu de Reportes, desde aqui podras acceder a los futuros reportes que se crearan',
                     },
                     {
-                        element: '#root > div > div div.Master-breadcrumbWrapper-117 nav',
+                        element: '#root > div > div div nav',
                         intro: 'Puedes mirar aqui, para saber en que lugar de la aplicación de encuentras',
                     },
                     {

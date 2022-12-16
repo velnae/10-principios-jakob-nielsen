@@ -18,7 +18,7 @@ return [
     'edit_image' => "Editar :name imagen",
 
     'delete_confirmation_title' => 'Estas eliminando un :name',
-    'delete_confirmation_body' => "Si no deshaces , el :name no se podra recuperar mas.",
+    'delete_confirmation_body' => "Estas seguro de eliminar al usuario.",
 
     'fetched' => 'Fetched :total :names.',
     'not_fetched' => 'Error fetching :names!',

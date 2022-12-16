@@ -47,26 +47,26 @@ const NotFound = ({ classes }) => (
     <ErrorLayout>
         <Grid item>
             <Typography variant="h1" color="textPrimary">
-                404
+                Oops!
             </Typography>
         </Grid>
 
         <Grid item>
-            <Typography variant="h6" color="textSecondary">
-                Sorry but we could not find the page you are looking for
+            <Typography variant="h6" color="textSecondary" align="center">
+                Lo sentimos, terminaste en un lugar que no existe, o el recurso o página fue movido a otra dirección.<br/> Estamos trabajando para que esto no ocurra.
             </Typography>
         </Grid>
 
         <Grid className={classes.spacer} item />
 
         <Grid item>
-            <Search />
+            {/*<Search />*/}
         </Grid>
 
         <Grid className={classes.break} item />
 
-        <Grid item>
-            <Link href="#">Go Home</Link>
+        <Grid item variant="h5">
+            <Link href="#">Ir al Inicio 🏠 </Link>
         </Grid>
     </ErrorLayout>
 );
