@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { Formik, Form, withFormik } from 'formik';
+import React, {useEffect, useState} from 'react';
+import {Link as RouterLink} from 'react-router-dom';
+import {Form, Formik, withFormik} from 'formik';
 import * as Yup from 'yup';
 
-import { Button, Grid, Link, TextField, withStyles } from '@material-ui/core';
+import {Button, Grid, Link, TextField, withStyles} from '@material-ui/core';
 
 import * as NavigationUtils from '../../../helpers/Navigation';
 import * as UrlUtils from '../../../helpers/URL';
-import { Auth as AuthLayout } from '../../layouts';
+import {Auth as AuthLayout} from '../../layouts';
 
 function PasswordRequest(props) {
     const [loading, setLoading] = useState(false);
@@ -24,15 +24,15 @@ function PasswordRequest(props) {
      */
     const handleRequestPasswordSubmit = async (
         values,
-        { setSubmitting, setErrors },
+        {setSubmitting, setErrors},
     ) => {
         setSubmitting(false);
 
         try {
             setLoading(true);
 
-            const { history } = props;
-            const { email } = values;
+            const {history} = props;
+            const {email} = values;
             const routeSuffix = NavigationUtils.route('auth.passwords.reset');
 
             await axios.post('api/v1/auth/password/request', {
@@ -52,15 +52,15 @@ function PasswordRequest(props) {
                 setLoading(false);
                 setMessage({
                     type: 'error',
-                    title: 'Something went wrong',
-                    body: `Oops? Something went wrong here. Please try again.`,
+                    title: 'Algo salio mal',
+                    body: 'Oops! Algo esta yendo mal. Intenta refrescar la pagina',
                     action: () => window.location.reload(),
                 });
 
                 return;
             }
 
-            const { errors } = error.response.data;
+            const {errors} = error.response.data;
 
             setErrors(errors);
 
@@ -73,7 +73,7 @@ function PasswordRequest(props) {
             return;
         }
 
-        const { location } = props;
+        const {location} = props;
 
         setEmail(
             UrlUtils.queryParams(location.search).hasOwnProperty('username')
@@ -82,8 +82,8 @@ function PasswordRequest(props) {
         );
     });
 
-    const { classes, ...other } = props;
-    const { location } = props;
+    const {classes, ...other} = props;
+    const {location} = props;
 
     return (
         <AuthLayout
@@ -109,12 +109,12 @@ function PasswordRequest(props) {
                 })}
             >
                 {({
-                    values,
-                    handleChange,
-                    errors,
-                    submitCount,
-                    isSubmitting,
-                }) => (
+                      values,
+                      handleChange,
+                      errors,
+                      submitCount,
+                      isSubmitting,
+                  }) => (
                     <Form autoComplete="off">
                         <Grid container direction="column">
                             <Grid item className={classes.formGroup}>
@@ -160,7 +160,7 @@ function PasswordRequest(props) {
                         </Grid>
 
                         <Grid container justify="space-between">
-                            <Grid item />
+                            <Grid item/>
 
                             <Grid item className={classes.formGroup}>
                                 <Button

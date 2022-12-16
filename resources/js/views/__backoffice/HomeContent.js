@@ -46,7 +46,7 @@ function HomeContent(props) {
                         </Grid>
                         <Grid item xs={12} md={9} style={{paddingTop: 10}}>
                             <Typography variant="h6">
-                                Empecemos!.
+                                Empecemos!
                             </Typography>
                             <Typography component="p">
                                 Bienvenido al sistema de gestión de usuarios para el UNAMBA Pagos, desde aqui podras

@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Formik, Form } from 'formik';
+import {Form, Formik} from 'formik';
 import * as Yup from 'yup';
 
 import {
     Button,
     FormControl,
     FormHelperText,
-    Input,
     Grid,
+    Input,
     InputLabel,
     MenuItem,
     Select,
     Typography,
-    withStyles, TextField,
+    withStyles,
 } from '@material-ui/core';
 
-import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
+import {DatePicker, MuiPickersUtilsProvider} from 'material-ui-pickers';
 import MomentUtils from '@date-io/moment';
 import moment from 'moment';
 import 'moment/locale/es';
@@ -24,7 +24,7 @@ import 'moment/locale/es';
 moment.locale('es');
 
 const Profile = props => {
-    const { classes, values, handleSubmit } = props;
+    const {classes, values, handleSubmit} = props;
 
     return (
         <Formik
@@ -32,13 +32,13 @@ const Profile = props => {
             validationSchema={Yup.object().shape({
                 firstname: Yup.string().required(
                     Lang.get('validation.required', {
-                        attribute: 'firstname',
+                        attribute: 'Nombre',
                     }),
                 ),
 
                 lastname: Yup.string().required(
                     Lang.get('validation.required', {
-                        attribute: 'lastname',
+                        attribute: 'Apellidos',
                     }),
                 ),
             })}
@@ -46,7 +46,7 @@ const Profile = props => {
                 let mappedValues = {};
                 let valuesArray = Object.values(values);
 
-                // Format values specially the object ones (i.e Moment)
+                // Format values specially the object ones (i. e Moment)
                 Object.keys(values).forEach((filter, key) => {
                     if (
                         valuesArray[key] !== null &&
@@ -68,13 +68,13 @@ const Profile = props => {
             validateOnBlur={false}
         >
             {({
-                values,
-                errors,
-                submitCount,
-                isSubmitting,
-                handleChange,
-                setFieldValue,
-            }) => (
+                  values,
+                  errors,
+                  submitCount,
+                  isSubmitting,
+                  handleChange,
+                  setFieldValue,
+              }) => (
                 <Form>
                     <Typography variant="h6" gutterBottom>
                         Personal Information
@@ -111,35 +111,6 @@ const Profile = props => {
                                     )}
                             </FormControl>
                         </Grid>
-
-                        {/*<Grid item xs={12} sm={4}>*/}
-                        {/*    <FormControl*/}
-                        {/*        className={classes.formControl}*/}
-                        {/*        error={*/}
-                        {/*            submitCount > 0 &&*/}
-                        {/*            errors.hasOwnProperty('middlename')*/}
-                        {/*        }*/}
-                        {/*    >*/}
-                        {/*        <InputLabel htmlFor="middlename">*/}
-                        {/*            Middlename*/}
-                        {/*        </InputLabel>*/}
-
-                        {/*        <Input*/}
-                        {/*            id="middlename"*/}
-                        {/*            name="middlename"*/}
-                        {/*            value={values.middlename}*/}
-                        {/*            onChange={handleChange}*/}
-                        {/*            fullWidth*/}
-                        {/*        />*/}
-
-                        {/*        {submitCount > 0 &&*/}
-                        {/*            errors.hasOwnProperty('middlename') && (*/}
-                        {/*                <FormHelperText>*/}
-                        {/*                    {errors.middlename}*/}
-                        {/*                </FormHelperText>*/}
-                        {/*            )}*/}
-                        {/*    </FormControl>*/}
-                        {/*</Grid>*/}
 
                         <Grid item xs={12} sm={8}>
                             <FormControl
@@ -188,11 +159,11 @@ const Profile = props => {
                                     name="gender"
                                     value={values.gender}
                                     onChange={handleChange}
-                                    input={<Input fullWidth />}
+                                    input={<Input fullWidth/>}
                                     autoWidth
                                 >
                                     <MenuItem value="">
-                                        Porfavor selecciona tu género
+                                        Por favor selecciona tu género
                                     </MenuItem>
 
                                     <MenuItem value="female">Femenino</MenuItem>
@@ -217,24 +188,25 @@ const Profile = props => {
                                     errors.hasOwnProperty('birthdate')
                                 }
                             >
-                                <MuiPickersUtilsProvider utils={MomentUtils} libInstance={moment} >
+                                <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils}>
                                     <DatePicker
                                         id="birthdate"
                                         name="birthdate"
-                                        label="Fecha de nacimiento"
-                                        placeholder="Porfavor selecciona fecha de nacimiento"
+                                        label="Fecha de nacimiento (YYYY-MM-DD)"
+                                        placeholder="1993-07-25"
                                         value={values.birthdate}
                                         onChange={date =>
                                             setFieldValue('birthdate', date)
                                         }
-                                        format="DD-MM-YYYY"
+                                        format="YYYY-MM-DD"
                                         maxDate={moment()
                                             .subtract(20, 'y')
                                             .subtract(1, 'd')
-                                            .format('DD-MM-YYYY')}
+                                            .format('YYYY-MM-DD')}
                                         keyboard
                                         clearable
                                         disableFuture
+                                        invalidDateMessage='Formato invalido'
                                     />
                                 </MuiPickersUtilsProvider>
 
@@ -281,7 +253,7 @@ const Profile = props => {
                         </Grid>
                     </Grid>
 
-                    <div className={classes.sectionSpacer} />
+                    <div className={classes.sectionSpacer}/>
 
                     <Grid container spacing={24} justify="flex-end">
                         <Grid item>

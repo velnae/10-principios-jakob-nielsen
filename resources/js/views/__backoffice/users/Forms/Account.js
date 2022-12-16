@@ -61,7 +61,7 @@ const Account = props => {
                                     autoWidth
                                 >
                                     <MenuItem value="">
-                                        Please select the user's type
+                                        Por favor selecciona el tipo
                                     </MenuItem>
 
                                     <MenuItem value="superuser">

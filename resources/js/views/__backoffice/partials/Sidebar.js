@@ -122,11 +122,12 @@ function Sidebar(props) {
         },
 
         {
-            name: 'Analytics',
-            id: 'analytics',
+            name: 'Reportes',
+            id: 'reportes',
             links: [
                 {
-                    name: 'Traffic',
+                    name: 'Usuarios',
+                    disabled: true,
                     icon: <ShowChartIcon/>,
                     path: null,
                 },
@@ -483,7 +484,10 @@ const styles = theme => {
 
         disabled: {
             cursor: 'not-allowed',
-            color: '#aaa',
+            color:
+                theme.palette.type === 'dark'
+                    ? '#5d5d5d'
+                    : '#aaaaaa',
         },
 
         active: {},

@@ -13,8 +13,8 @@ return [
 
     'user' => 'Usuario',
     'password' => 'Clave',
-    'signin_guest_title' => 'Ingresar',
-    'signin_guest_subtitle' => 'Con tu cuenta',
+    'signin_guest_title' => 'Ingresa',
+    'signin_guest_subtitle' => 'Con tu usuario',
     'signin_identified_title' => 'Bienvenido',
     'forgot_email' => 'Olvidaste el usuario?',
     'forgot_password' => 'Olvidaste la clave?',

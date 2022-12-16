@@ -1,18 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { Formik, Form } from 'formik';
+import React, {useContext, useEffect, useState} from 'react';
+import {Link as RouterLink} from 'react-router-dom';
+import {Form, Formik} from 'formik';
 import * as Yup from 'yup';
 
-import {
-    Button,
-    Chip,
-    Grid,
-    IconButton,
-    InputAdornment,
-    Link,
-    TextField,
-    withStyles,
-} from '@material-ui/core';
+import {Button, Chip, Grid, IconButton, InputAdornment, Link, TextField, withStyles,} from '@material-ui/core';
 
 import {
     AccountCircle as AccountCircleIcon,
@@ -23,11 +14,11 @@ import {
 
 import * as UrlUtils from '../../helpers/URL';
 import * as NavigationUtils from '../../helpers/Navigation';
-import { Auth as AuthLayout } from '../layouts';
-import { AppContext } from '../../AppContext';
+import {Auth as AuthLayout} from '../layouts';
+import {AppContext} from '../../AppContext';
 
 function SignIn(props) {
-    const { authenticate } = useContext(AppContext);
+    const {authenticate} = useContext(AppContext);
 
     const [loading, setLoading] = useState(false);
     const [identified, setIdentified] = useState(false);
@@ -44,7 +35,7 @@ function SignIn(props) {
         setUsername('');
         setIdentified(false);
 
-        const { history, location } = props;
+        const {history, location} = props;
 
         history.push(`${location.pathname}`);
     };
@@ -66,7 +57,7 @@ function SignIn(props) {
      *
      * @return {undefined}
      */
-    const identify = async (username = null, { setErrors }) => {
+    const identify = async (username = null, {setErrors}) => {
         setLoading(true);
 
         try {
@@ -74,7 +65,7 @@ function SignIn(props) {
                 username,
             });
 
-            const { history, location } = props;
+            const {history, location} = props;
 
             setIdentified(true);
             setUsername(response.data);
@@ -95,12 +86,12 @@ function SignIn(props) {
                 throw new Error('Unknown error');
             }
 
-            const { errors } = error.response.data;
+            const {errors} = error.response.data;
 
             if (errors) {
                 setErrors(errors);
             } else {
-                setErrors({'username' : 'Error interno en el servidor, intenta en unos minutos o contacte con el administrador del sistema'})
+                setErrors({'username': 'Error interno en el servidor, intenta en unos minutos o contacte con el administrador del sistema'});
             }
 
             setLoading(false);
@@ -120,7 +111,7 @@ function SignIn(props) {
         setLoading(true);
 
         try {
-            const { password } = values;
+            const {password} = values;
 
             const response = await axios.post('/api/v1/auth/signin', {
                 username,
@@ -135,7 +126,7 @@ function SignIn(props) {
                 throw new Error('Unknown error');
             }
 
-            const { errors } = error.response.data;
+            const {errors} = error.response.data;
 
             if (errors) {
                 form.setErrors(errors);
@@ -169,8 +160,8 @@ function SignIn(props) {
 
             setMessage({
                 type: 'error',
-                title: 'Something went wrong',
-                body: 'Oops? Something went wrong here. Please try again.',
+                title: 'Algo salio mal',
+                body: 'Oops! Algo esta yendo mal. Intenta refrescar la pagina',
                 action: () => window.location.reload(),
             });
         }
@@ -184,7 +175,7 @@ function SignIn(props) {
             return;
         }
 
-        const { location } = props;
+        const {location} = props;
 
         const q = UrlUtils.queryParams(location.search);
 
@@ -193,7 +184,7 @@ function SignIn(props) {
         }
     }, [identified]);
 
-    const { classes, ...other } = props;
+    const {classes, ...other} = props;
 
     return (
         <AuthLayout
@@ -208,9 +199,9 @@ function SignIn(props) {
                     <Chip
                         label={username}
                         variant="outlined"
-                        icon={<AccountCircleIcon color="primary" />}
+                        icon={<AccountCircleIcon color="primary"/>}
                         onDelete={handleUsernameChipClicked}
-                        deleteIcon={<ExpandMoreIcon />}
+                        deleteIcon={<ExpandMoreIcon/>}
                     />
                 ) : (
                     Lang.get('navigation.signin_guest_subtitle')
@@ -229,13 +220,13 @@ function SignIn(props) {
                     [!identified
                         ? 'username'
                         : 'password']: Yup.string().required(
-                        `The ${
-                            !identified ? 'username' : 'password'
-                        } field is required`,
+                        `${
+                            !identified ? 'El Usuario' : 'La clave'
+                        } es un campo requerido`,
                     ),
                 })}
             >
-                {({ values, handleChange, errors, isSubmitting }) => (
+                {({values, handleChange, errors, isSubmitting}) => (
                     <Form autoComplete="off">
                         <Grid container direction="column">
                             {!identified ? (
@@ -304,9 +295,9 @@ function SignIn(props) {
                                                             }
                                                         >
                                                             {passwordVisible ? (
-                                                                <VisibilityOffIcon />
+                                                                <VisibilityOffIcon/>
                                                             ) : (
-                                                                <VisibilityIcon />
+                                                                <VisibilityIcon/>
                                                             )}
                                                         </IconButton>
                                                     </InputAdornment>
@@ -343,7 +334,7 @@ function SignIn(props) {
                         </Grid>
 
                         <Grid container justify="space-between">
-                            <Grid item />
+                            <Grid item/>
 
                             <Grid item className={classes.formGroup}>
                                 <Button

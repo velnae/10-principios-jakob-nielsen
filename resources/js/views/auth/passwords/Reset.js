@@ -1,27 +1,16 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { Formik, Form } from 'formik';
+import React, {useContext, useEffect, useState} from 'react';
+import {Link as RouterLink} from 'react-router-dom';
+import {Form, Formik} from 'formik';
 import * as Yup from 'yup';
 
-import {
-    Button,
-    Grid,
-    IconButton,
-    InputAdornment,
-    Link,
-    TextField,
-    withStyles,
-} from '@material-ui/core';
+import {Button, Grid, IconButton, InputAdornment, Link, TextField, withStyles,} from '@material-ui/core';
 
-import {
-    Visibility as VisibilityIcon,
-    VisibilityOff as VisibilityOffIcon,
-} from '@material-ui/icons';
+import {Visibility as VisibilityIcon, VisibilityOff as VisibilityOffIcon,} from '@material-ui/icons';
 
 import * as NavigationUtils from '../../../helpers/Navigation';
 import * as UrlUtils from '../../../helpers/URL';
-import { Auth as AuthLayout } from '../../layouts';
-import { AppContext } from '../../../AppContext';
+import {Auth as AuthLayout} from '../../layouts';
+import {AppContext} from '../../../AppContext';
 
 function PasswordReset(props) {
     const [loading, setLoading] = useState(false);
@@ -59,15 +48,15 @@ function PasswordReset(props) {
      *
      * @return {undefined}
      */
-    const handleSubmit = async (values, { setSubmitting, setErrors }) => {
+    const handleSubmit = async (values, {setSubmitting, setErrors}) => {
         setSubmitting(false);
 
         setLoading(true);
 
         try {
-            const { authenticate } = useContext(AppContext);
-            const { match } = props;
-            const { token } = match.params;
+            const {authenticate} = useContext(AppContext);
+            const {match} = props;
+            const {token} = match.params;
 
             const response = await axios.patch(
                 `api/v1/auth/password/reset/${token}`,
@@ -82,15 +71,15 @@ function PasswordReset(props) {
                 setLoading(false);
                 setMessage({
                     type: 'error',
-                    title: 'Something went wrong',
-                    body: 'Oops? Something went wrong here. Please try again.',
+                    title: 'Algo salio mal',
+                    body: 'Oops! Algo esta yendo mal. Intenta refrescar la pagina',
                     action: () => window.location.reload(),
                 });
 
                 return;
             }
 
-            const { errors } = error.response.data;
+            const {errors} = error.response.data;
 
             if (errors) {
                 setErrors(errors);
@@ -108,7 +97,7 @@ function PasswordReset(props) {
             return;
         }
 
-        const { location } = props;
+        const {location} = props;
 
         const queryParams = UrlUtils.queryParams(location.search);
 
@@ -119,7 +108,7 @@ function PasswordReset(props) {
         setEmail(queryParams.email);
     });
 
-    const { classes, ...other } = props;
+    const {classes, ...other} = props;
 
     return (
         <AuthLayout
@@ -171,12 +160,12 @@ function PasswordReset(props) {
                 })}
             >
                 {({
-                    values,
-                    handleChange,
-                    errors,
-                    submitCount,
-                    isSubmitting,
-                }) => (
+                      values,
+                      handleChange,
+                      errors,
+                      submitCount,
+                      isSubmitting,
+                  }) => (
                     <Form autoComplete="off">
                         <Grid container direction="column">
                             <Grid item className={classes.formGroup}>
@@ -207,9 +196,9 @@ function PasswordReset(props) {
                                                     }
                                                 >
                                                     {passwordVisible ? (
-                                                        <VisibilityOffIcon />
+                                                        <VisibilityOffIcon/>
                                                     ) : (
-                                                        <VisibilityIcon />
+                                                        <VisibilityIcon/>
                                                     )}
                                                 </IconButton>
                                             </InputAdornment>
@@ -254,9 +243,9 @@ function PasswordReset(props) {
                                                     }
                                                 >
                                                     {passwordConfirmationVisible ? (
-                                                        <VisibilityOffIcon />
+                                                        <VisibilityOffIcon/>
                                                     ) : (
-                                                        <VisibilityIcon />
+                                                        <VisibilityIcon/>
                                                     )}
                                                 </IconButton>
                                             </InputAdornment>
@@ -287,7 +276,7 @@ function PasswordReset(props) {
                         </Grid>
 
                         <Grid container justify="space-between">
-                            <Grid item />
+                            <Grid item/>
 
                             <Grid item className={classes.formGroup}>
                                 <Button

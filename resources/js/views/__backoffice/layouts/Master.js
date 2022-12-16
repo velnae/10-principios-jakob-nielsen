@@ -114,32 +114,90 @@ function Master(props) {
         </AppBar>
     );
 
-    const [stepsEnabled, setStepsEnabled] = useState(false);
+    const [stepsEnabled, setStepsEnabled] = useState(() => {
+        const saved = localStorage.getItem('stepsEnabled');
+        const status = saved || 1;
+        return Boolean(Number(status));
+    });
+
+    localStorage.setItem('stepsEnabled', '0');
+
     const [initialStep, setInitialStep] = useState(0);
-    const [steps, setSteps] = useState([
-        {
-            element: '.anyselector',
-            intro: 'Bienvenido a la guia del sistema'
-        },
-        {
-            element: '#root > div > div > div:nth-child(2) > div > div > div:nth-child(2) > button',
-            intro: 'World step',
-        },
-        {
-            element: '#root > div > nav > div > div > div > div > div > ul > ul > div:nth-child(1)',
-            intro: 'World step',
-        },
-        {
-            element: '#root > div > div > main > div > div > div > div > form > div:nth-child(2) > div:nth-child(1)',
-            intro: 'World step',
-        },
-    ]);
+    const [steps, setSteps] = useState(() => {
+        let steps_ = [];
+        switch (location.pathname) {
+            case '/':
+                steps_ = [
+                    {
+                        element: '.anyselector',
+                        intro: 'Bienvenido al guia de uso, has click en siguiente para poder guiarte'
+                    },
+                    {
+                        element: '#root > div > div > div:nth-child(2) > div > div > div:nth-child(2) > button',
+                        intro: 'Desde aquí podrás volver a mostrar esta Ayuda',
+                    },
+                    {
+                        element: '#root > div > nav > div > div > div > div > div > ul > div',
+                        intro: 'Actualmente nos encontramos aqui el panel de bienvenida, el menu activo se muestra de color diferente al resto',
+                    },
+                    {
+                        element: '#root > div > nav > div > div > div > div > div > ul > ul > div:nth-child(1)',
+                        intro: 'Menu de recurso, desde aquí podrás acceder a la gestión de las opciones que se muestran adentro',
+                    },
+                    {
+                        element: '#root > div > nav > div > div > div > div > div > ul > ul > div:nth-child(3)',
+                        intro: 'Menu de Reportes, desde aqui podras acceder a los futuros reportes que se crearan',
+                    },
+                    {
+                        element: '#root > div > div div.Master-breadcrumbWrapper-117 nav',
+                        intro: 'Puedes mirar aqui, para saber en que lugar de la aplicación de encuentras',
+                    },
+                    {
+                        element: '#root > div > div > div:nth-child(2) > div > div > div:nth-child(2) > button',
+                        intro: 'Eso es todo en esta interfaz, no olvides donde encontrarme.<br><br> si entras a otro menú, la ayuda te mostrara los pasos de esa opción'
+                    },
+                ];
+                break;
+            case '/resources/users':
+                steps_ = [
+                    {
+                        element: '#root > div > div > div:nth-child(2) > div > div > div:nth-child(2)',
+                        intro: 'Para agregar nuevos usuarios puedes hacer click aquí!',
+                    },
+                    {
+                        element: '#root > div > div > main > div > div > div > table tbody',
+                        intro: 'Esta es la tabla de usuarios, desde donde podrás agregar, editar, eliminar y filtrar con diferentes condiciones'
+                    },
+                    {
+                        element: '#root > div > div > main > div > div > div > table tfoot tr td div',
+                        intro: 'Aqui podras ver, cuantas resultados se obutvo en la actual lista, y poder moverte entre las paginas de resultados y la cantidad de resultados por pagina',
+                    },
+                    {
+                        element: '#root > div > div > main > div > div > div > table tbody tr:nth-child(2)',
+                        intro: 'Para editar, debes ubicarte en el icono del lapiz ✏️, a la altura del usuario que deseas editar.<br><br> Para eliminarlo debes ubicarte en el icono 🗑️',
+                    },
+                    {
+                        element: '#root > div > div > main > div > div  div button',
+                        intro: 'Finalmente para poder filtrar los resultados, puedes jugar con las diferentes opciones que te muestra, haciendo click aquí'
+                    },
+                ];
+                break;
+            default:
+                steps_ = [
+                    {
+                        element: '.anyselector',
+                        intro: 'No se tiene una guia para esta interfaz aun, pronto se agregara 😀'
+                    },
+                ];
+                break;
+        }
+        return steps_;
+    });
     const onExit = () => {
         setStepsEnabled(false);
     };
 
     const activateStepsGuide = () => {
-        console.log('asda');
         setStepsEnabled(true);
     };
 

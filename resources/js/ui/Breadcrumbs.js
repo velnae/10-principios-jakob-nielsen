@@ -1,19 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
+import {Link as RouterLink} from 'react-router-dom';
 
-import { Link, Typography, withStyles } from '@material-ui/core';
+import {Link, Typography, withStyles} from '@material-ui/core';
 
-import { Breadcrumbs as MuiBreadcrumbs } from '@material-ui/lab';
+import {Breadcrumbs as MuiBreadcrumbs} from '@material-ui/lab';
 
-import { Home as HomeIcon } from '@material-ui/icons';
+import {Home as HomeIcon} from '@material-ui/icons';
 
 import * as NavigationUtils from '../helpers/Navigation';
 import * as StringUtils from '../helpers/String';
 
 function Breadcrumbs(props) {
-    const { classes, segments, blacklistedSegments, ...other } = props;
+    const {classes, segments, blacklistedSegments, ...other} = props;
 
+    const translate = (word) => {
+        switch (word) {
+            case 'resources':
+                return 'recursos';
+            case 'users':
+                return 'usuarios';
+            case 'create':
+                return 'crear';
+            case 'edit':
+                return 'editar';
+            default:
+                return 'nada';
+        }
+    };
     return (
         <MuiBreadcrumbs arial-label="Breadcrumb" {...other}>
             {segments.length > 0 ? (
@@ -27,16 +41,16 @@ function Breadcrumbs(props) {
                     )}
                     className={classes.breadcrumb}
                 >
-                    <HomeIcon className={classes.icon} />
+                    <HomeIcon className={classes.icon}/>
                 </Link>
             ) : (
-                <HomeIcon className={classes.icon} />
+                <HomeIcon className={classes.icon}/>
             )}
 
             {segments.map((segment, key) => {
                 const renderText = (
                     <Typography key={key} className={classes.breadcrumb}>
-                        {StringUtils.uppercaseFirst(segment)}
+                        {StringUtils.uppercaseFirst(translate(segment))}
                     </Typography>
                 );
 
@@ -75,7 +89,7 @@ function Breadcrumbs(props) {
                         )}
                         className={classes.breadcrumb}
                     >
-                        {StringUtils.uppercaseFirst(segment)}
+                        {StringUtils.uppercaseFirst(translate(segment))}
                     </Link>
                 );
             })}

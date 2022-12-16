@@ -357,17 +357,17 @@ function List(props) {
 
     const tabs = [
         {
-            name: 'List',
+            name: 'Lista',
             active: true,
         },
     ];
 
     const columns = [
-        { name: 'Type', property: 'type' },
-        { name: 'Name', property: 'name', sort: true },
-        { name: 'Email', property: 'email', sort: true },
+        { name: 'Tipo', property: 'type' },
+        { name: 'Nombre', property: 'name', sort: true },
+        { name: 'Correo', property: 'email', sort: true },
         {
-            name: 'Actions',
+            name: 'Acciones',
             property: 'actions',
             filter: false,
             sort: false,

@@ -115,7 +115,6 @@ function Dropzone(props) {
 
     const getfileRejectedMessage = file => {
         let errors = [];
-        debugger
         if (
             acceptedFileTypes.filter(type => type.indexOf(file.type) !== -1)
                 .length === 0
